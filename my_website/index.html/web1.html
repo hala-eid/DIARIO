@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diario</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap"> 
+	<style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            overflow-x: hidden;
+            background-color: #EBC4A3;
+        }
+
+        .top-section {
+            height: 10%;
+            background-color: #fffff5;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 120px;
+            height: auto;
+        }
+
+        .title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #333;
+            margin-left: 15px;
+        }
+
+        .login-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .login-form {
+            display: none;
+            position: absolute;
+            top: 60px;
+            right: 20px;
+            background-color: #f1f1f1;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            width: 250px;
+        }
+
+        .bottom-section {
+            background-color: #fdf4e3;
+            position: relative;
+            padding: 20px;
+            min-height: 90vh;
+        }
+
+        .bottom-section img.background-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .bottom-section .journal-text {
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 48px;
+            font-weight: bold;
+            color: #333;
+            z-index: 2;
+        }
+
+        .half-circle {
+            position: absolute;
+            bottom: -300px;
+            left: 50%;
+            width: 1000px;
+            height: 600px;
+            background-color: #FFC0CB;
+            border-radius: 500px 500px 0 0;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        .image-map-container {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 3;
+            overflow-x: auto;
+            overflow-y: hidden;
+            white-space: nowrap;
+        }
+
+        .image-map-content {
+            display: inline-flex;
+            justify-content: center;
+            align-items: flex-end;
+            padding: 0 10px;
+        }
+
+        .image-map-content a {
+            margin: 0 10px;
+            flex-shrink: 0;
+            width: 140px;
+            height: 140px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .image-map-content a img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 5px;
+        }
+
+        .image-map-content a:hover img {
+            transform: scale(1.1);
+        }
+
+        .to-do-list {
+            transform: translateY(-30px);
+        }
+
+        .weekly-plan {
+            transform: translateY(-30px);
+        }
+
+        .top-circle-image-container {
+            position: absolute;
+            bottom: -300px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+        }
+
+        .top-circle-image {
+            position: absolute;
+            top: -450px;
+            left: 55%;
+            transform: translateX(-59%);
+            width: 1550px;
+            height: auto;
+            z-index: 3;
+        }
+
+        @media (max-width: 768px) {
+            .top-section {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .title {
+                font-size: 24px;
+                margin-left: 0;
+            }
+
+            .login-button {
+                margin-top: 10px;
+            }
+
+            .login-form {
+                top: 70px;
+                right: 10px;
+                width: 90%;
+            }
+
+            .bottom-section .journal-text {
+                font-size: 36px;
+            }
+
+            .half-circle {
+                width: 100%;
+                height: 400px;
+            }
+
+            .image-map-container {
+                height: 200px;
+            }
+
+            .image-map-content a {
+                width: 120px;
+                height: 120px;
+                margin: 0 10px;
+            }
+
+            .image-map-content a span {
+                font-size: 12px;
+            }
+
+            .top-circle-image {
+                width: 80px;
+                top: -60px;
+            }
+        }
+
+        .about-us-section {
+            padding: 40px;
+            background-color: #fffff5;
+            color: #333;
+            text-align: center;
+            border-top: 1px solid #ddd;
+            margin-top: 20px; /* Space above the section */
+            clear: both; /* Ensures it appears below all other floated content */
+        }
+
+        .about-us-section h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .about-us-section p {
+            font-size: 18px;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .footer-text {
+            padding: 70px;
+            background-color: #FFC0CB;
+            color: #333;
+            text-align: center;
+            border-top: 1px solid #ddd;
+            font-size: 16px;
+			font-family: 'Lora', serif; 
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="top-section">
+        <div class="logo-container">
+            <img src="C:\Users\pc\OneDrive\Desktop\my_website\images\logo.png" alt="Logo" class="logo">
+            <div class="title">DIARIO</div>
+        </div>
+        <button class="login-button" onclick="toggleLoginForm()">Login</button>
+    </div>
+
+    <div class="bottom-section">
+        <img src="C:\Users\pc\OneDrive\Desktop\my_website\images\home.png" alt="Background Image" class="background-image">
+        <div class="journal-text">JOURNAL</div>
+        <div class="half-circle"></div>
+
+        <div class="image-map-container">
+            <div class="image-map-content">
+                <a href="C:\Users\pc\OneDrive\Desktop\my_website/journal.html/web2.html" target="_blank">
+                    <img src="C:\Users\pc\OneDrive\Desktop\my_website\images/journal.png" alt="Journal Page">
+                    <span>JOURNAL</span>
+                </a>
+                <a href="C:\Users\pc\OneDrive\Desktop\my_website/todo.html/web3.html" target="_blank" class="to-do-list">
+                    <img src="C:\Users\pc\OneDrive\Desktop\my_website\images/todop.png" alt="To Do List Page">
+                    <span>TO DO LIST</span>
+                </a>
+                <a href="C:\Users\pc\OneDrive\Desktop\my_website/weekly.html/web4.html" target="_blank" class="weekly-plan">
+                    <img src="C:\Users\pc\OneDrive\Desktop\my_website\images/week.png" alt="Weekly Plan Page">
+                    <span>WEEKLY PLAN</span>
+                </a>
+                <a href="C:\Users\pc\OneDrive\Desktop\my_website/videos.html/web5.html" target="_blank">
+                    <img src="C:\Users\pc\OneDrive\Desktop\my_website\images/video.png" alt="Journaling Videos Page">
+                    <span>JOURNALING VIDEOS</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="top-circle-image-container">
+            <img src="C:\Users\pc\OneDrive\Desktop\my_website\images/Untitled.png" alt="Top Image" class="top-circle-image">
+        </div>
+    </div>
+    
+    <div class="about-us-section">
+        <h2>About Us</h2>
+        <p>We are dedicated to providing the best experience for your journaling and planning needs. Our team is passionate about creating tools that help you stay organized, reflect on your daily experiences, and achieve your goals. With a focus on simplicity and functionality, we strive to make every aspect of your journaling journey enjoyable and effective. Thank you for being a part of our community!</p>
+    </div>
+
+    <div class="footer-text">
+	<h2>About Us</h2>
+        <p>We are dedicated to providing the best experience for your journaling and planning needs. Our team is passionate about creating tools that help you stay organized, reflect on your daily experiences, and achieve your goals. With a focus on simplicity and functionality, we strive to make every aspect of your journaling journey enjoyable and effective. Thank you for being a part of our community!</p>
+        <p>&copy; 2024 Diario. All rights reserved.</p>
+		
+    </div>
+
+    <div class="login-form" id="loginForm">
+        <form action="">
+            <label for="userid">User ID:</label><br>
+            <input type="text" id="userid" name="userid"><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password"><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function toggleLoginForm() {
+            const loginForm = document.getElementById('loginForm');
+            loginForm.style.display = loginForm.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diario</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap"> 
+    <style>
+        /* Your existing CSS code here */
+    </style>
+</head>
+
+<body>
+    <div class="top-section">
+        <div class="logo-container">
+            <img src="C:/Users/pc/Desktop/my_website/images/logo.png" alt="Logo" class="logo">
+            <div class="title">DIARIO</div>
+        </div>
+        <button class="login-button" onclick="toggleLoginForm()">Login</button>
+    </div>
+
+    <div class="bottom-section">
+        <!-- Your existing content here -->
+    </div>
+
+    <div class="login-form" id="loginForm">
+        <?php
+            // Check if the form is submitted
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                $userid = $_POST['userid'];
+                $password = $_POST['password'];
+
+                // Example: Simple username and password check
+                if ($userid === 'admin' && $password === 'password') {
+                    echo "<p>Login successful! Welcome, $userid.</p>";
+                } else {
+                    echo "<p>Invalid credentials. Please try again.</p>";
+                }
+            }
+        ?>
+        <form method="POST" action="">
+            <label for="userid">User ID:</label><br>
+            <input type="text" id="userid" name="userid"><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password"><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function toggleLoginForm() {
+            const loginForm = document.getElementById('loginForm');
+            loginForm.style.display = loginForm.style.display === 'block' ? 'none' : 'block';
+        }
+    </script>
+</body>
+
+</html>

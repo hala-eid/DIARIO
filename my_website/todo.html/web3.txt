@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"> 
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+            background-color: #fdf4e3; /* Set background color for the body */
+            font-family: 'Roboto', sans-serif;
+        }
+        .header {
+            background-color: #fffff5;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+        }
+        .logo {
+            width: 150px;  /* Increased width to make the logo bigger */
+            height: auto;
+            margin-right: 10px;
+        }
+        .header a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #333;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+        .container {
+            width: 100%;
+            min-height: calc(100vh - 60px); /* Adjust for header height */
+            padding: 10px;
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+        }
+        .todo-app {
+            width: 100%;
+            max-width: 540px;
+            background: #fff;
+            margin: 20px auto;
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .todo-app img {
+            width: 80px; /* Adjust size as needed */
+            height: auto;
+            vertical-align: middle; /* Align image vertically with text */
+        }
+        .todo-app h2 {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+		.row {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			background: #edeef0;
+			border-radius: 30px;
+			padding-left: 20px;
+			margin-bottom: 25px;
+		}
+		input {
+			flex: 1;
+			border: none;
+			outline: none;
+			background: transparent;
+			padding: 10px;
+		}
+		button {
+			border: none;
+			outline: none;
+			padding: 16px 50px;
+			background: #fbc4ab;
+			color: #fff;
+			font-size: 16px;
+			cursor: pointer;
+			border-radius: 40px;
+		}
+		ul li {
+			list-style: none;
+			font-size: 17px;
+			padding: 12px 8px 12px 50px; /* Increased padding-left to make space for the image */
+			user-select: none;
+			cursor: pointer;
+			position: relative;
+		}
+		ul li::before {
+			content: '';
+			position: absolute;
+			height: 28px; /* Ensure the height matches the image height */
+			width: 28px;  /* Ensure the width matches the image width */
+			border-radius: 50%;
+			background-image: url('C:/Users/pc/Desktop/my_website/images/unchecked.png');
+			background-size: cover;
+			background-position: center;
+			top: 50%; /* Center the image vertically */
+			left: 12px; /* Position the image to the left of the text */
+			transform: translateY(-50%); /* Adjust the vertical alignment */
+		}
+		ul li.checked {
+			color: #555;
+			text-decoration: line-through;
+		}
+		ul li.checked::before {
+			background-image: url('C:/Users/pc/Desktop/my_website/images/checked.png');
+		}
+		ul li span{
+		Position:absolute;
+		right:0;
+		top:5px;
+		width:40px;
+		height:40px;
+		font-size:22px;
+		color:#555;
+		line-height:40px;
+		text-align:Center;
+		border-radius:50%;
+		}
+		ul li span:hover{
+		background:#edeef0;
+		}
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="C:/Users/pc/Desktop/my_website/index.html">
+            <img src="C:/Users/pc/Desktop/my_website/images/logo.png" alt="Logo" class="logo">
+            <h1>DIARIO</h1>
+        </a>
+    </div>
+    <div class="container">
+        <div class="todo-app">
+            <h2>To-Do List <img src="C:/Users/pc/Desktop/my_website/images/todo.png" alt="To-Do Icon"></h2>
+           <div class="row">
+		   <input type="text" id="input-box" placeholder="add you text">
+		   <button onclick="addTask()">add</button>
+		   </div>
+		   <ul id="list-container">
+		   </ul>
+        </div>
+    </div>
+    <div class="bottom-section">
+
+    </div>
+	<script>
+		var inputBox = document.getElementById("input-box");
+		var listContainer = document.getElementById("list-container");
+
+		function addTask() {
+			if (inputBox.value === '') {
+				alert("You must write something!");
+			} else {
+				let li = document.createElement("li");
+				li.innerHTML = inputBox.value;
+				listContainer.appendChild(li);
+				inputBox.value = ""; // Clear the input field after adding the task
+
+				let span = document.createElement("span");
+				span.innerHTML = "\u00d7"; // This is the '×' character for the delete button
+				li.appendChild(span);
+
+				// Add event listener to toggle 'checked' class
+				li.addEventListener("click", function () {
+					li.classList.toggle("checked");
+				});
+
+				// Add event listener to remove task when the span (delete button) is clicked
+				span.addEventListener("click", function (e) {
+					e.stopPropagation(); // Prevent the event from bubbling up to the li click event
+					li.remove();
+				});
+			}
+		}
+	</script>
+</body>
+</html>
+
+

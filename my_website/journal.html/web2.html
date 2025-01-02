@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Journal</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"> 
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #EBC4A3; 
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .header {
+            background-color: #fffff5;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+        }
+        .logo {
+            width: 100px; 
+            height: auto;
+            margin-right: 10px;
+        }
+        .header a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #333; /* Adjust color if needed */
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 36px;
+            font-weight: bold;
+        }
+        .container {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center align items horizontally */
+        }
+        .journal-title {
+            font-size: 48px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .section {
+            width: 100%;
+            max-width: 600px; /* Limit the width of the sections */
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .section h2 {
+            font-size: 24px;
+            margin: 0 0 10px 0;
+        }
+        .section textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .section input[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .section input[type="submit"]:hover {
+            background-color: #555;
+        }
+        .clear-button {
+            background-color: #E54C93;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .clear-button:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="C:\Users\pc\OneDrive\Desktop\my_website\index.html/web1.html">
+            <img src="C:\Users\pc\OneDrive\Desktop\my_website\images/logo.png" alt="Logo" class="logo">
+            <h1>DIARIO</h1>
+        </a>
+    </div>
+    <div class="container">
+        <div class="journal-title">JOURNAL</div>
+        <div class="section">
+            <h2>Morning Prompts</h2>
+            <form id="morningPromptsForm">
+                <label for="gratitude">Three things you’re grateful for:</label><br>
+                <textarea id="gratitude" name="gratitude"></textarea><br><br>
+                <label for="accomplishments">Three things you want to accomplish today:</label><br>
+                <textarea id="accomplishments" name="accomplishments"></textarea><br><br>
+                <label for="affirmation">Daily affirmation:</label><br>
+                <textarea id="affirmation" name="affirmation"></textarea><br><br>
+                <input type="submit" value="Save">
+                <button type="button" class="clear-button" onclick="clearForm('morningPromptsForm')">Clear</button>
+            </form>
+        </div>
+        <div class="section">
+            <h2>Evening Prompts</h2>
+            <form id="eveningPromptsForm">
+                <label for="amazing">Three amazing things that happened today:</label><br>
+                <textarea id="amazing" name="amazing"></textarea><br><br>
+                <label for="improvement">How could I have made today even better?</label><br>
+                <textarea id="improvement" name="improvement"></textarea><br><br>
+                <input type="submit" value="Save">
+                <button type="button" class="clear-button" onclick="clearForm('eveningPromptsForm')">Clear</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+    function clearForm(formId) {
+        const form = document.getElementById(formId);
+        form.reset();
+        localStorage.removeItem(formId);
+    }
+    </script>
+</body>
+</html>

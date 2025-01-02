@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weekly Planner</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #EBC4A3; 
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        .header {
+            background-color: #fffff5;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid #ddd;
+        }
+        .logo {
+            width: 150px; 
+            height: auto;
+            margin-right: 10px;
+        }
+        .header a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #333; 
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 36px;
+            font-weight: bold;
+        }
+        .container {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .Weekly-title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .row {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            max-width: 800px;
+            margin-bottom: 20px;
+        }
+        .section {
+            width: 48%; /* Make each section half of the row width */
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .section label {
+            font-size: 18px; /* Smaller week names */
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .section textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .section input[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .section input[type="submit"]:hover {
+            background-color: #555;
+        }
+        .clear-button {
+            background-color: #E54C93;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .clear-button:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body> 
+    <div class="header">
+        <a href="C:\Users\pc\OneDrive\Desktop\my_website\index.html/web1.html">
+            <img src="C:\Users\pc\OneDrive\Desktop\my_website\images/logo.png" alt="Logo" class="logo">
+            <h1>DIARIO</h1>
+        </a>
+    </div>
+    <div class="container">
+        <div class="Weekly-title">WEEKLY PLANNER</div>
+        
+        <div class="row">
+            <div class="section">
+                <form id="mondayForm">
+                    <label for="monday">MONDAY</label>
+                    <textarea id="monday" name="monday"></textarea>
+                </form>
+            </div>
+            <div class="section">
+                <form id="tuesdayForm">
+                    <label for="tuesday">TUESDAY</label>
+                    <textarea id="tuesday" name="tuesday"></textarea>
+                </form>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="section">
+                <form id="wednesdayForm">
+                    <label for="wednesday">WEDNESDAY</label>
+                    <textarea id="wednesday" name="wednesday"></textarea>
+                </form>
+            </div>
+            <div class="section">
+                <form id="thursdayForm">
+                    <label for="thursday">THURSDAY</label>
+                    <textarea id="thursday" name="thursday"></textarea>
+                </form>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="section">
+                <form id="fridayForm">
+                    <label for="friday">FRIDAY</label>
+                    <textarea id="friday" name="friday"></textarea>
+                </form>
+            </div>
+            <div class="section">
+                <form id="saturdayForm">
+                    <label for="saturday">SATURDAY</label>
+                    <textarea id="saturday" name="saturday"></textarea>
+                </form>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="section">
+                <form id="sundayForm">
+                    <label for="sunday">SUNDAY</label>
+                    <textarea id="sunday" name="sunday"></textarea>
+                </form>
+            </div>
+            <div class="section">
+                <form id="notesForm">
+                    <label for="notes">NOTES</label>
+                    <textarea id="notes" name="notes"></textarea>
+                    <input type="submit" value="Save">
+                    <button type="button" class="clear-button" onclick="clearForms()">Clear All</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // Clear all forms and localStorage
+    function clearForms() {
+        const days = ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday", "notes"];
+        days.forEach(day => {
+            localStorage.removeItem(day);
+            const textarea = document.getElementById(day);
+            if (textarea) {
+                textarea.value = '';
+            }
+        });
+    }
+    </script>
+</body>
+</html>
+
